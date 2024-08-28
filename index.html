@@ -3,7 +3,6 @@
   <head>
     <link rel="shortcut icon" href="https://hexdocs.pm/favicon.png" />
     <title>QuickDox</title>
-    <script src="/tabs.js"></script>
     <style type="text/css">
       :root {
         --navy: #001f3f;
@@ -37,6 +36,10 @@
         font-family: Helvetica, sans-serif;
       }
 
+      .tabs {
+        /* margin: 0 0 1em 0; */
+      }
+
       .tabs ul {
         padding: 0;
         list-style-type: none;
@@ -66,7 +69,7 @@
         bottom: 0;
         left: 0;
         right: 0;
-        top: 3rem;
+        top: 7.5rem;
       }
 
       .pane {
@@ -77,71 +80,33 @@
         height: 100%;
         border: none;
       }
+
+      .search {
+        padding: 1em;
+        display: flex;
+      }
+
+      .search input {
+        padding: 0.25rem;
+        margin: 0 1rem 0 0;
+      }
+
+      .search button {
+        font-size: 1rem;
+      }
     </style>
   </head>
   <body>
-    <section class="tabs">
-      <nav>
-        <ul>
-          <li><a href="#elixir-pane">Elixir</a></li>
-          <li><a href="#phoenix-pane">Phoenix</a></li>
-          <li><a href="#phoenix-html-pane">Phoenix.HTML</a></li>
-          <li><a href="#liveview-pane">Phoenix.LiveView</a></li>
-          <li><a href="#ecto-pane">Ecto</a></li>
-          <li><a href="#ecto-query-pane">EctoQuery</a></li>
-          <li><a href="#ecto-cooler-pane">EctoCooler</a></li>
-          <li><a href="#mix-pane">Mix</a></li>
-          <li><a href="#exunit-pane">ExUnit</a></li>
-          <li><a href="#iex-pane">IEx</a></li>
-          <li><a href="#faker-pane">Faker</a></li>
-        </ul>
-      </nav>
-    </section>
+    <div class="search">
+      <input name="search" type="search" />
+      <button type="submit">&#x1F50E;</button>
+    </div>
 
-    <section class="panes">
-      <section class="pane" id="elixir-pane">
-        <iframe width="100%" src="https://hexdocs.pm/elixir/Kernel.html"></iframe>
-      </section>
+    <section class="tabs"></section>
+    <section class="panes"></section>
 
-      <section class="pane" id="phoenix-pane">
-        <iframe width="100%" src="https://hexdocs.pm/phoenix/Phoenix.html"></iframe>
-      </section>
-
-      <section class="pane" id="phoenix-html-pane">
-        <iframe width="100%" src="https://hexdocs.pm/phoenix_html/Phoenix.HTML.html"></iframe>
-      </section>
-
-      <section class="pane" id="liveview-pane">
-        <iframe width="100%" src="https://hexdocs.pm/phoenix_live_view/Phoenix.LiveView.html"></iframe>
-      </section>
-
-      <section class="pane" id="ecto-pane">
-        <iframe width="100%" src="https://hexdocs.pm/ecto/Ecto.html"></iframe>
-      </section>
-
-      <section class="pane" id="ecto-query-pane">
-        <iframe width="100%" src="https://hexdocs.pm/ecto/Ecto.Query.html"></iframe>
-      </section>
-
-      <section class="pane" id="ecto-cooler-pane">
-        <iframe width="100%" src="https://hexdocs.pm/ecto_cooler/readme.html"></iframe>
-      </section>
-
-      <section class="pane" id="mix-pane">
-        <iframe width="100%" src="https://hexdocs.pm/mix/Mix.html"></iframe>
-      </section>
-
-      <section class="pane" id="exunit-pane">
-        <iframe width="100%" src="https://hexdocs.pm/ex_unit/ExUnit.html"></iframe>
-      </section>
-
-      <section class="pane" id="iex-pane">
-        <iframe width="100%" src="https://hexdocs.pm/iex/IEx.html"></iframe>
-      </section>
-
-      <section class="pane" id="faker-pane">
-        <iframe width="100%" src="https://hexdocs.pm/faker/Faker.html"></iframe>
-      </section>
-    </section>
+    <script src="/docs.js" type="module"></script>
+    <script src="/tabs.js" type="module"></script>
+    <script src="/search.js" type="module"></script>
   </body>
 </html>

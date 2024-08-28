@@ -1,9 +1,69 @@
+import docs from "./docs.js";
+
 window.addEventListener("DOMContentLoaded", (event) => {
+  create_tabs(".tabs");
+  create_panes(".panes");
   const hash = location.hash;
   const tabs = Array.from(document.querySelectorAll(".tabs li a"));
   const panes = Array.from(document.querySelectorAll(".pane"));
   const firstPane = panes[0];
   const firstPaneTitle = tabs[0].innerText;
+
+  function create_element(tag, content, attrs = {}) {
+    const el = document.createElement(tag);
+
+    Object.keys(attrs).forEach((k) => {
+      if (k === "className") {
+        el.classList.add(attrs[k]);
+      } else if (k === "classList") {
+        attrs[k].forEach((className) => el.classList.add(className));
+      } else {
+        el.setAttribute(k, attrs[k]);
+      }
+    });
+
+    if (content) {
+      if (typeof content === "string") {
+        el.innerText = content;
+      } else {
+        el.appendChild(content);
+      }
+    }
+
+    return el;
+  }
+
+  function create_tab({ slug, name }) {
+    const link = create_element("a", name, { href: `#${slug}` });
+    const tab = create_element("li", link);
+
+    return tab;
+  }
+
+  function create_tabs(rootSelector) {
+    const root = document.querySelector(rootSelector);
+    const ul = create_element("ul");
+    const nav = create_element("nav", ul);
+
+    docs.forEach((tab) => ul.appendChild(create_tab(tab)));
+    root.appendChild(nav);
+  }
+
+  function create_pane({ slug: id, url: src }) {
+    const iframe = create_element("iframe", null, { src, width: "100%" });
+    const pane = create_element("section", iframe, {
+      className: "pane",
+      id,
+    });
+    pane.appendChild(iframe);
+
+    return pane;
+  }
+
+  function create_panes(rootSelector) {
+    const root = document.querySelector(rootSelector);
+    docs.forEach((pane) => root.appendChild(create_pane(pane)));
+  }
 
   function setTitle(string) {
     const suffix = "QuickDox";
